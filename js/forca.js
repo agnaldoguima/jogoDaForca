@@ -238,6 +238,7 @@ function montarPalavraNaTela(){
 }
 
 function verificaLetraEscolhida(letra){
+    document.getElementById("tecla-" + letra).disabled = true;
     if(tentativas > 0)
     {
         mudarStyleLetra("tecla-" + letra);
@@ -256,11 +257,13 @@ function comparalistas(letra){
     if(pos < 0){
         tentativas--
         carregaImagemForca();
-        // verificar se ainda tem tentativas // mensagem
+
+        if(tentativas == 0){
+            abreModal("OPS!", "Não foi dessa vez ... A palavra secreta era <br>" + palavraSecretaSorteada);
+        }
     }
     else{
-        for(i = 0; i < palavraSecretaSorteada.length; i++)
-        {
+        for(i = 0; i < palavraSecretaSorteada.length; i++){
             if(palavraSecretaSorteada[i] == letra){
                 listaDinamica[i] = letra;
             }
@@ -276,7 +279,7 @@ function comparalistas(letra){
 
     if(vitoria == true)
     {
-        //mensagem na tela
+        abreModal("PARABÉNS!", "Você venceu...");
         tentativas = 0;
     }
 }
@@ -306,6 +309,23 @@ function carregaImagemForca(){
             break;
     }
 }
+
+function abreModal(titulo, mensagem){
+    let modalTitulo = document.getElementById("exampleModalLabel");
+    modalTitulo.innerText = titulo;
+
+    let modalBody = document.getElementById("modalBody");
+    modalBody.innerHTML = mensagem;
+
+    $("#myModal").modal({
+        show: true
+    });
+}
+
+let bntReiniciar = document.querySelector("#btnReiniciar")
+bntReiniciar.addEventListener("click", function(){
+    location.reload();
+});
 
 
 
