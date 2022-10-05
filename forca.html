@@ -12,6 +12,7 @@
 <body>
     <div class="container">
         <div id="imagem"></div>
+
         <div id="palavra-secreta">
             <!-- <div class="letras">A</div>
             <div class="letras">F</div>
@@ -20,6 +21,7 @@
             <div class="letras">S</div>
             <div class="letras">M</div> -->
         </div>
+
         <div id="teclado">
             <div class="teclas">
                 <button id="tecla-A" onclick="verificaLetraEscolhida('A')">A</button>
@@ -55,11 +57,12 @@
                 <button id="btnReiniciar">🎮</button>
             </div>
         </div>
+
         <div id="categoria">
             <!-- CATEGORIA -->
         </div>
-        <!-- inicio modal -->
-        <!-- Modal -->
+
+        <!-- inicio modal Bootstrap-->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -76,7 +79,7 @@
             </div>
             </div>
         </div>
-        <!-- fim modal --> 
+        <!-- fim modal Bootstrap--> 
 
         <!-- Modal Adicionar Palavra -->
         <div id="modal-alerta" class="modal-container">
@@ -92,7 +95,8 @@
                 </div>
             </div>
         </div>
-
+    </div>
+    
     <div id="status">Modo Automático</div>
     <button id="abreModalAddPalavra"><i class='bx bx-message-square-add'></i></button>
     <img src="img/jogarNovamente.gif" id="jogarNovamente"></img> 
