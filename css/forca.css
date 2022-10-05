@@ -87,6 +87,136 @@ body{
     font-size: 1.2em;
 }
 
+#abreModalAddPalavra, #recarregar, #jogarAutomatico, #jogarNovamente{
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    border: none;
+    outline: none;
+    border-radius: 70px;
+    font-size: 3em;
+    background-color: transparent;
+    color: #000;
+    cursor: pointer;
+}
+
+#abreModalAddPalavra{
+    bottom: 160px;
+    right: 5px;
+}
+
+#recarregar{
+    bottom: 80px;
+    right: 5px;
+}
+
+#jogarAutomatico{
+    bottom: 5px;
+    right: 5px;
+}
+
+#status{
+    position: fixed;
+    bottom: 10px;
+}
+
+#jogarNovamente{
+    /* display: none; */
+    bottom: 15px;
+    right: 30px;
+    transform: rotate(-90deg);
+    transform-origin: left top 0;
+}
+
+.modal-container{
+    /* display: none; */
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-add-palavra{
+    position: relative;
+    background-color: #fefefe;
+    border: 10px solid #000;
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
+    padding: 0;
+    width: 90%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animacao;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animacao;
+    animation-duration: 0.4s;
+}
+
+@-webkit-keyframes animacao{
+    from{top:-300px; opacity: 0;}
+    to{top:0; opacity: 1;}
+}
+
+@keyframes animacao{
+    from{top:-300px; opacity: 0;}
+    to{top:0; opacity: 1;}
+}
+
+.modal-header-add-palavra{
+    padding: 2px 16px;
+    background-color: #ffd700;
+    font-size: 1.3em;
+    border-bottom: 10px solid #000;
+}
+
+.close{
+    color: #000;
+    float: right;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus{
+    color: #fff;
+    text-decoration: none;
+}
+
+.modal-body-add-palavra{
+    display: flex;
+    flex-direction: column;
+    padding: 2px 16px;
+}
+
+.modal-body-add-palavra input, .modal-body-add-palavra button{
+    text-align: center;
+    margin: 10px 0;
+    font-size: 1.5em;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #9c9c9c;
+}
+
+.modal-body-add-palavra input{
+    text-transform: uppercase;
+}
+
+.modal-body-add-palavra button{
+    background-color: #ffd700;
+    cursor: pointer;
+}
+
+.modal-body-add-palavra button:hover{
+    background-color: #000;
+    color: #ffd700;
+    cursor: pointer;
+}
+
+/*#region MEDIA QUERY*/
 @media (min-width: 321px){
     .teclas button{
         width: 25px;
@@ -147,6 +277,17 @@ body{
     #categoria{
         font-size: 2em;
     }
+
+    .modal-add-palavra{
+        width: 80%;
+    }
 }
+
+@media (min-width: 1025px){
+    .modal-add-palavra{
+        width: 50%;
+    }
+}
+/*#endregion*/
 
 

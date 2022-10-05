@@ -1,3 +1,4 @@
+let jogarNovamente = true;
 let tentativas = 6;
 let listaDinamica = [];
 let palavraSecretaCategoria;
@@ -256,6 +257,8 @@ function criarPalavraSecreta(){
     
     palavraSecretaSorteada = palavras[indexPalavra].nome;
     palavraSecretaCategoria = palavras[indexPalavra].categoria;
+
+    // console.log(palavraSecretaSorteada);
 }
 
 montarPalavraNaTela();
@@ -321,6 +324,7 @@ function comparalistas(letra){
 
         if(tentativas == 0){
             abreModal("OPS!", "Não foi dessa vez ... A palavra secreta era <br>" + palavraSecretaSorteada);
+            piscarBotaoJogarNovamente();
         }
     }
     else{
@@ -343,7 +347,23 @@ function comparalistas(letra){
     {
         abreModal("PARABÉNS!", "Você venceu...");
         tentativas = 0;
+        piscarBotaoJogarNovamente();
     }
+}
+
+async function piscarBotaoJogarNovamente(){
+    while (jogarNovamente == true) {
+        document.getElementById("btnReiniciar").style.backgroundColor = 'red';
+        document.getElementById("btnReiniciar").style.scale = 1.3;
+        await atraso(500)
+        document.getElementById("btnReiniciar").style.backgroundColor = 'yellow';
+        document.getElementById("btnReiniciar").style.scale = 1;
+        await atraso(500)
+    }
+}
+
+async function atraso(tempo){
+    return new Promise(x => setTimeout(x, tempo))     
 }
 
 function carregaImagemForca(){
@@ -386,6 +406,7 @@ function abreModal(titulo, mensagem){
 
 let bntReiniciar = document.querySelector("#btnReiniciar")
 bntReiniciar.addEventListener("click", function(){
+    jogarNovamente = false;
     location.reload();
 });
 
