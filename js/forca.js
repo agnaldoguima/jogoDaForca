@@ -81,7 +81,7 @@ function comparalistas(letra){
 
         if(tentativas == 0){
             abreModal("OPS!", "Não foi dessa vez ... A palavra secreta era <br>" + palavraSecretaSorteada);
-            piscarBotaoJogarNovamente();
+            piscarBotaoJogarNovamente(true);
         }
     }
     else{
@@ -104,20 +104,20 @@ function comparalistas(letra){
     {
         abreModal("PARABÉNS!", "Você venceu...");
         tentativas = 0;
-        piscarBotaoJogarNovamente();
+        piscarBotaoJogarNovamente(true);
     }
 }
 
-async function piscarBotaoJogarNovamente(){
-    while (jogarNovamente == true) {
-        document.getElementById("btnReiniciar").style.backgroundColor = 'red';
-        document.getElementById("btnReiniciar").style.scale = 1.3;
-        await atraso(500)
-        document.getElementById("btnReiniciar").style.backgroundColor = 'yellow';
-        document.getElementById("btnReiniciar").style.scale = 1;
-        await atraso(500)
-    }
-}
+// async function piscarBotaoJogarNovamente(){
+//     while (jogarNovamente == true) {
+//         document.getElementById("btnReiniciar").style.backgroundColor = 'red';
+//         document.getElementById("btnReiniciar").style.scale = 1.3;
+//         await atraso(500)
+//         document.getElementById("btnReiniciar").style.backgroundColor = 'yellow';
+//         document.getElementById("btnReiniciar").style.scale = 1;
+//         await atraso(500)
+//     }
+// }
 
 async function atraso(tempo){
     return new Promise(x => setTimeout(x, tempo))     
@@ -166,7 +166,6 @@ bntReiniciar.addEventListener("click", function(){
     jogarNovamente = false;
     location.reload();
 });
-
 
 function listaAutomatica(){ // ativa o modo manual
     if (jogoAutomatico == true) {
@@ -473,17 +472,49 @@ function adicionarPalavra(){
     }
 
     palavras.push(palavra);  
-    // sortear 
+    sortear();
     
     document.getElementById("addPalavra").value = "";
     document.getElementById("addCategoria").value = "";
-
-    console.log(palavras);
 }
 
 function isNullOrWhiteSpace(input){
     return !input || !input.trim();
 }
 
+function sortear(){
+    if(jogoAutomatico == true){
+        location.reload();  
+    }
+    else{
+        if(palavras.length > 0){
+            listaDinamica=[];
+            criarPalavraSecreta();
+            montarPalavraNaTela();
+            resetaTeclas();
+            tentativas = 6;
+            piscarBotaoJogarNovamente(false);
+        }
+    }
+}
+
+function resetaTeclas(){
+    let teclas = document.querySelectorAll(".teclas > button")
+    teclas.forEach((x) =>{
+        x.style.background = "#FFFFFF";
+        x.style.color = "#8B008B";
+        x.disabled = false;
+    });
+}
+
+
+async function piscarBotaoJogarNovamente(querJogar){
+    if(querJogar){
+        document.getElementById("jogarNovamente").style.display = "block";
+    }
+    else{
+        document.getElementById("jogarNovamente").style.display = "none";
+    }
+}
 
 
